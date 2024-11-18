@@ -7,6 +7,7 @@ const app = express();
 
 const PORT = ENV_VAR.PORT;
 
+app.use(express.json()); // parse req.body
 app.use("/api/v1/auth", authRoutes);
 
 app.listen(PORT, () => {
