@@ -20,7 +20,11 @@ const LoginPage = () => {
     <div className="h-screen w-screen hero-bg">
       <header className="max-w-6xl mx-auto items-center justify-between p-4">
         <Link to={"/"}>
-          <img src="/netflix-logo.png" alt="logo-netflix" className="w-48" />
+          <img
+            src="/netflix-logo.png"
+            alt="logo-netflix"
+            className="w-32 md:w-48"
+          />
         </Link>
       </header>
       <div className="flex justify-center items-center mt-20 mx-3">
