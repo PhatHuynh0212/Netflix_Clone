@@ -1,20 +1,27 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import { useAuthStore } from "../store/authUser";
 
 const SignUpPage = () => {
-  const [email, setEmail] = useState("");
+  const { searchParams } = new URL(document.location);
+  const emailValue = searchParams.get("email");
+
+  const [email, setEmail] = useState(emailValue || "");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  const togglePassVisibility = () => {
+  const togglePassVisibility = (e) => {
+    e.preventDefault();
     setIsPasswordVisible(!isPasswordVisible);
   };
 
+  const { signup } = useAuthStore();
+
   const handleSignUp = (e) => {
     e.preventDefault();
-    console.log(email, username, password);
+    signup({ email, username, password });
   };
 
   return (
@@ -91,7 +98,7 @@ const SignUpPage = () => {
                   onClick={togglePassVisibility}
                   className="absolute top-1/2 right-3 -translate-y-1/2 transform text-gray-300 hover:text-white"
                 >
-                  {isPasswordVisible ? <EyeOff size={20} /> : <Eye size={20} />}
+                  {isPasswordVisible ? <Eye size={20} /> : <EyeOff size={20} />}
                 </button>
               </div>
             </div>

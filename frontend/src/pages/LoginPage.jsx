@@ -1,19 +1,23 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import { useAuthStore } from "../store/authUser";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  const togglePassVisibility = () => {
+  const togglePassVisibility = (e) => {
+    e.preventDefault();
     setIsPasswordVisible(!isPasswordVisible);
   };
 
+  const { login } = useAuthStore();
+
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(email, password);
+    login({ email, password });
   };
 
   return (
@@ -72,7 +76,7 @@ const LoginPage = () => {
                   onClick={togglePassVisibility}
                   className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-300 hover:text-white"
                 >
-                  {isPasswordVisible ? <EyeOff size={20} /> : <Eye size={20} />}
+                  {isPasswordVisible ? <Eye size={20} /> : <EyeOff size={20} />}
                 </button>
               </div>
             </div>
