@@ -2,21 +2,45 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import { Info, Play } from "lucide-react";
 import useGetTrendingContent from "../../hooks/useGetTrendingContent.js";
-import { ORIGINAL_IMG_URL } from "../../utils/constant.js";
+import {
+  MOVIE_CATEGORIES,
+  ORIGINAL_IMG_URL,
+  TV_CATEGORIES,
+} from "../../utils/constant.js";
+import { useContentStore } from "../../store/content.js";
+import Slider from "../../components/Slider.jsx";
+import { useState } from "react";
 
 const HomeScreen = () => {
   const { trendingContent } = useGetTrendingContent();
-  console.log("trendingContent: ", trendingContent);
+  const { contentType } = useContentStore();
+  const [imgLoading, setImgLoading] = useState(true);
+
+  if (!trendingContent) {
+    return (
+      <div className="relative h-screen text-white">
+        <Navbar />
+
+        <div className="absolute top-0 left-0 w-full h-full bg-black/70 flex justify-center items-center -z-10 shimmer"></div>
+      </div>
+    );
+  }
 
   return (
     <>
       <div className="relative h-screen text-white">
         <Navbar />
 
+        {/* Loading image */}
+        {imgLoading && (
+          <div className="absolute top-0 left-0 w-full h-full bg-black/70 flex justify-center items-center -z-10 shimmer"></div>
+        )}
+
         <img
           src={ORIGINAL_IMG_URL + trendingContent?.backdrop_path}
           alt="Image screen"
           className="absolute top-0 left-0 w-full h-full object-cover -z-50"
+          onLoad={() => setImgLoading(false)}
         />
 
         <div
@@ -59,6 +83,16 @@ const HomeScreen = () => {
             </Link>
           </div>
         </div>
+      </div>
+
+      <div className="flex flex-col gap-10 bg-black py-10">
+        {contentType === "movie"
+          ? MOVIE_CATEGORIES.map((category) => (
+              <Slider key={category} category={category} />
+            ))
+          : TV_CATEGORIES.map((category) => (
+              <Slider key={category} category={category} />
+            ))}
       </div>
     </>
   );

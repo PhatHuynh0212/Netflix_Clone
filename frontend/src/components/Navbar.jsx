@@ -74,14 +74,14 @@ const Navbar = () => {
             <Link
               to="/"
               className="block hover:opacity-70 hover:transition-all p-2"
-              onClick={toggleMobileMenu}
+              onClick={() => setContentType("movie")}
             >
               Movies
             </Link>
             <Link
               to="/"
               className="block hover:opacity-70 hover:transition-all p-2"
-              onClick={toggleMobileMenu}
+              onClick={() => setContentType("tv")}
             >
               TV Shows
             </Link>
