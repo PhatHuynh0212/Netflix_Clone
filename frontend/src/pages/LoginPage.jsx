@@ -13,7 +13,7 @@ const LoginPage = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
-  const { login } = useAuthStore();
+  const { login, isLogIn } = useAuthStore();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -86,7 +86,7 @@ const LoginPage = () => {
               className="w-full py-2 bg-red-600 text-white font-semibold rounded-md
             hover:bg-red-700 "
             >
-              Login
+              {isLogIn ? "Loading..." : "Login"}
             </button>
           </form>
           <div className="text-center text-gray-400">

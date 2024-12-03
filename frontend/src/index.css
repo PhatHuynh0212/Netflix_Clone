@@ -21,3 +21,16 @@
     background-position: 1000px 0;
   }
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d83838;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #202734;
+}
