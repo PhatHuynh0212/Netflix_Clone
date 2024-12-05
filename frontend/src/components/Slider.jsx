@@ -26,8 +26,6 @@ const Slider = ({ category }) => {
     getContent();
   }, [contentType, category]);
 
-  console.log("content ", content);
-
   const scrollLeft = () => {
     if (sliderRef.current) {
       sliderRef.current.scrollBy({
@@ -59,22 +57,25 @@ const Slider = ({ category }) => {
         className="flex space-x-4 overflow-x-scroll scrollbar-hide"
         ref={sliderRef}
       >
-        {content?.map((item) => (
-          <Link
-            key={item.id}
-            to={`/watch/${item.id}`}
-            className="relative group min-w-[250px]"
-          >
-            <div className="rounded-lg overflow-hidden">
-              <img
-                src={SMALL_IMG_URL + item.backdrop_path}
-                alt="Movie image category"
-                className="transition-transform duration-300 ease-in-out group-hover:scale-110"
-              />
-            </div>
-            <p className="mt-2 text-center">{item.title || item.name}</p>
-          </Link>
-        ))}
+        {content?.map((item) => {
+          if (item?.backdrop_path === null) return null;
+          return (
+            <Link
+              key={item?.id}
+              to={`/watch/${item?.id}`}
+              className="relative group min-w-[250px]"
+            >
+              <div className="rounded-lg overflow-hidden">
+                <img
+                  src={SMALL_IMG_URL + item?.backdrop_path}
+                  alt="Movie image category"
+                  className="transition-transform duration-300 ease-in-out group-hover:scale-110"
+                />
+              </div>
+              <p className="mt-2 text-center">{item?.title || item?.name}</p>
+            </Link>
+          );
+        })}
       </div>
       {showArrow && (
         <>

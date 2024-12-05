@@ -20,7 +20,7 @@ const AuthScreen = () => {
           alt="logo-netflix"
           className="w-32 md:w-48"
         />
-        <Link to={"/login"} className="text-white bg-red-500 px-3 py-1 rounded">
+        <Link to={"/login"} className="text-white bg-red-600 px-3 py-1 rounded">
           Sign In
         </Link>
       </header>
@@ -47,7 +47,7 @@ const AuthScreen = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <button className="flex items-center justify-center w-fit self-center lg:gap-2 bg-red-500 text-lg lg:text-2xl px-2 lg:px-6 py-1 md:py-2 rounded">
+          <button className="flex items-center justify-center w-fit self-center lg:gap-2 bg-red-600 text-lg lg:text-2xl px-2 lg:px-6 py-1 md:py-2 rounded">
             Get Started
             <ChevronRight className="size-7 lg:size-9" />
           </button>
