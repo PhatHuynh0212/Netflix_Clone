@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useContentStore } from "../../store/content.js";
+import { useContentStore } from "../store/content.js";
 import axios from "axios";
-import Navbar from "../../components/Navbar.jsx";
+import Navbar from "../components/Navbar.jsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ReactPlayer from "react-player";
-import { ORIGINAL_IMG_URL, SMALL_IMG_URL } from "../../utils/constant.js";
-import { formatDate } from "../../utils/function.js";
-import WatchPageSkeleton from "../../components/skeletons/WatchPageSkeleton.jsx";
+import { ORIGINAL_IMG_URL, SMALL_IMG_URL } from "../utils/constant.js";
+import { formatDate } from "../utils/function.js";
+import WatchPageSkeleton from "../components/skeletons/WatchPageSkeleton.jsx";
 
 const WatchPage = () => {
   const { id } = useParams();
