@@ -66,7 +66,11 @@ const HistorySearchPage = () => {
                 className="size-16 rounded-full object-cover mr-4"
               />
               <div className="flex flex-col">
-                <span className="text-white text-lg">{item.title}</span>
+                <span className="text-white text-lg">
+                  {item.title.length > 22
+                    ? item.title.slice(0, 16) + "..."
+                    : item.title}
+                </span>
                 <span className="text-gray-400">
                   {formatDate(item.createAt)}
                 </span>

@@ -8,13 +8,24 @@ const useGetTrendingContent = () => {
 
   useEffect(() => {
     const getTrendingContent = async () => {
-      const res = await axios.get(`/api/v1/${contentType}/trending`);
-      setTrendingContent(res.data.content);
+      try {
+        let validContent = null;
+
+        while (!validContent) {
+          const res = await axios.get(`/api/v1/${contentType}/trending`);
+          if (res.data.content?.backdrop_path) {
+            validContent = res.data.content;
+          }
+        }
+
+        setTrendingContent(validContent);
+      } catch (error) {
+        console.log("Error fetching trending content:", error.message);
+      }
     };
 
     getTrendingContent();
   }, [contentType]);
-
   return { trendingContent };
 };
 
