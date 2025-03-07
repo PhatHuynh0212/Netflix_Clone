@@ -20,6 +20,10 @@ const WatchPage = () => {
   const sliderRef = useRef(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const getTrailer = async () => {
       try {
         const res = await axios.get(`/api/v1/${contentType}/${id}/trailers`);
@@ -209,6 +213,9 @@ const WatchPage = () => {
                   <Link
                     key={content?.id}
                     to={`/watch/${content?.id}`}
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
                     className="w-52 flex-none"
                   >
                     <img
