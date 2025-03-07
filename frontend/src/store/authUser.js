@@ -48,7 +48,8 @@ export const useAuthStore = create((set) => ({
       set({ user: response.data.user, isCheckAuth: false });
     } catch (error) {
       set({ isCheckAuth: false, user: null });
-      toast.error(error.response.data.message || "An error occurred");
+      // toast.error(error.response.data.message || "An error occurred");
+      console.error(error.response.data.message);
     }
   },
 }));
